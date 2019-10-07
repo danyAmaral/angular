@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col">
                 <h3 style="color: red">=( Fim de Jogo! </h3>
-                <h5>Infelizmente você perdeu, tente novamente!</h5>
+                <h5>Infelizmente você conseguiu apenas {{exibirResultado.conclusao}}% , tente novamente!</h5>
                 <button class="btn btn-primary" (click)="reiniciarJogo()">Jogar Novamente</button>
             </div>
         </div>
@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col">
                         <h3 style="color: green"> =D Fim de Jogo! </h3>
-                        <h5>Parabéns você concluiu as traduções!</h5>
+                        <h5>Parabéns você conseguiu {{exibirResultado.conclusao}}% as traduções!</h5>
                         <button class="btn btn-primary" (click)="reiniciarJogo()">Jogar Novamente</button>
                     </div>
                 </div>

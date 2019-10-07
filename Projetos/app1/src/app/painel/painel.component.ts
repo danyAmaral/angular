@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter , Output, OnDestroy} from '@angular/core';
 
 import {Frase} from '../shared/frase.model'
+import {Resultado} from '../shared/resultado.model'
 import {FRASES} from './frases-mock'
 
 @Component({
@@ -19,7 +20,8 @@ export class PainelComponent implements OnInit {
   public progresso: number = 0
   public tentativas: number = 3
 
-  @Output() public encerrarJogo: EventEmitter<string> = new EventEmitter();
+
+  @Output() public encerrarJogo:EventEmitter<Resultado>  = new EventEmitter<Resultado>();
 
     constructor() {
       this.atualizaRodada()
@@ -30,7 +32,6 @@ export class PainelComponent implements OnInit {
     }
 
     ngOnDestroy(){
-      console.log("painel excluido")
     }
 
     public atualizaResposta(resposta:Event): void{
@@ -48,7 +49,8 @@ export class PainelComponent implements OnInit {
        this.tentativas--
 
        if(this.tentativas === -1){
-        this.encerrarJogo.emit('derrota');
+          let resultado: Resultado = new Resultado('derrota',this.progresso);
+          this.encerrarJogo.emit(resultado);
        }
     }
   }
@@ -61,7 +63,8 @@ export class PainelComponent implements OnInit {
       }
       if(this.rodada === this.frases.length)
       {
-         this.encerrarJogo.emit('vitoria');
+        let resultado: Resultado = new Resultado('vitoria',this.progresso);
+        this.encerrarJogo.emit(resultado);
       }
     }
 }
