@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private ofertasServices: OfertasService) { }
 
   ngOnInit() {
-     this.ofertasServices.getOfertas2()
+     this.ofertasServices.getOfertas()
         .then((ofertas: Oferta[]) =>{
             this.ofertas = ofertas;
         });
