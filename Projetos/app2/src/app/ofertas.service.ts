@@ -22,4 +22,12 @@ constructor(private http: HttpClient){}
                     return resposta;
                 })
     }
+
+    public getOfertaPorId(id: string): Promise<Oferta[]>{
+        return this.http.get(`http://localhost:3000/ofertas?categoria=${id}`)
+        .toPromise()
+        .then((resposta: any) => {
+            return resposta;
+        })
+    }
 }
