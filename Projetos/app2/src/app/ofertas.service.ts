@@ -1,14 +1,14 @@
 import {Oferta} from './shared/oferta.model'
 import {Injectable} from '@angular/core'
 import { HttpClient } from '@angular/common/http';
-
+import {URL_API} from './app.api'
 
 @Injectable()
 export class OfertasService{
 constructor(private http: HttpClient){}
 
     public getOfertas(): Promise<Oferta[]>{
-        return  this.http.get("http://localhost:3000/ofertas?destaque=true")
+        return  this.http.get(`${URL_API}?destaque=true`)
             .toPromise()
             .then((resposta: any) => {
                 return resposta;
@@ -16,18 +16,18 @@ constructor(private http: HttpClient){}
     }
 
     public getOfertasPorCategoria(categoria: string): Promise<Oferta[]>{
-        return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+        return this.http.get(`${URL_API}?categoria=${categoria}`)
                 .toPromise()
                 .then((resposta: any) => {
                     return resposta;
                 })
     }
 
-    public getOfertaPorId(id: string): Promise<Oferta[]>{
-        return this.http.get(`http://localhost:3000/ofertas?categoria=${id}`)
-        .toPromise()
-        .then((resposta: any) => {
-            return resposta;
-        })
+    public getOfertaPorId(id: number): Promise<Oferta>{
+        return this.http.get(`${URL_API}?id=${id}`)
+            .toPromise()
+            .then((resposta: any) => {
+                return resposta[0]
+            })
     }
 }
