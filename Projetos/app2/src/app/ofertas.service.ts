@@ -3,6 +3,10 @@ import {Injectable} from '@angular/core'
 import { HttpClient } from '@angular/common/http';
 import {URL_API} from './app.api'
 
+import {Observable} from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+
+
 @Injectable()
 export class OfertasService{
 constructor(private http: HttpClient){}
@@ -45,5 +49,9 @@ constructor(private http: HttpClient){}
             .then((resposta: any) => {
                 return resposta[0]
             })
+    }
+
+    public pesquisaOfertas(pesquisa: string): Observable<Oferta[]>{
+        return this.http.get<Oferta[]>(`${URL_API}/ofertas?descricao_oferta_like=${pesquisa}`);
     }
 }
