@@ -2,9 +2,8 @@ import {Oferta} from './shared/oferta.model'
 import {Injectable} from '@angular/core'
 import { HttpClient } from '@angular/common/http';
 import {URL_API} from './app.api'
-
 import {Observable} from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import 'rxjs/operators'
 
 
 @Injectable()
@@ -30,7 +29,7 @@ constructor(private http: HttpClient){}
     public getOfertaPorId(id: number): Promise<Oferta>{
         return this.http.get(`${URL_API}/ofertas?id=${id}`)
             .toPromise()
-            .then((resposta: any) => {
+            .then((resposta: Response) => {
                 return resposta[0]
             })
     }
@@ -38,7 +37,7 @@ constructor(private http: HttpClient){}
     public getComoUsarOfertaPorId(id: number): Promise<string>{
         return this.http.get(`${URL_API}/como-usar?id=${id}`)
             .toPromise()
-            .then((resposta: any) => {
+            .then((resposta: Response) => {
                 return resposta[0]
             })
     }
@@ -46,7 +45,7 @@ constructor(private http: HttpClient){}
     public getOndeFicaOfertaPorId(id: number): Promise<string>{
         return this.http.get(`${URL_API}/onde-fica?id=${id}`)
             .toPromise()
-            .then((resposta: any) => {
+            .then((resposta: Response) => {
                 return resposta[0]
             })
     }
