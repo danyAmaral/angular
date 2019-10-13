@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, empty, from } from 'rxjs';
 import { switchMap, distinctUntilChanged, retry } from 'rxjs/operators';
 import { fromEvent , of} from 'rxjs';
 import { debounceTime, catchError } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-topo',
@@ -14,7 +15,6 @@ import { debounceTime, catchError } from 'rxjs/operators';
 })
 export class TopoComponent implements OnInit {
   public ofertas: Observable<Oferta[]>;
-  public ofertas2: Oferta[];
   private subjectPesquisa: Subject<string> = new Subject<string>();
   constructor(private ofertasService: OfertasService) { }
 
@@ -26,6 +26,8 @@ export class TopoComponent implements OnInit {
         distinctUntilChanged(),
         switchMap((pesquisa: string) => {
           console.log('api: ', pesquisa)
+          if(pesquisa.trim() === '' )
+              return  of<Oferta[]>([])
           return this.ofertasService.pesquisaOfertas(pesquisa)
         }
         ),
@@ -33,12 +35,12 @@ export class TopoComponent implements OnInit {
           throw 'error in source. Details: ' + err;
         }),
       );
-
-    this.ofertas.subscribe((ofertas: Oferta[]) => {
-      this.ofertas2 = ofertas;
-    }
-    )
   }
+
+  public limpaPesquisa(): void{
+    this.subjectPesquisa.next('');
+  }
+
 
   public pesquisa(pesquisa: string): void {
     console.log('keyup: ', pesquisa)
