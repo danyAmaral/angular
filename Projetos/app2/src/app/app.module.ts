@@ -17,9 +17,7 @@ import localeExtraPT from '@angular/common/locales/extra/pt';
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(localePT, 'pt', localeExtraPT);
 import { DescricaoReduzida } from './shared/descricao-reduzida.pipe';
-import { OrdermCompraComponent } from './orderm-compra/orderm-compra.component';
-import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component'
-
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +31,7 @@ import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component'
     ComoUsarComponent,
     OndeFicaComponent,
     DescricaoReduzida,
-    OrdermCompraComponent,
-    OrdemCompraComponent
+    OrdemCompraComponent,
   ],
   imports: [
     BrowserModule,
