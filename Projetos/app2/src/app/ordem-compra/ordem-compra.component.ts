@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdemCompraService } from '../ordem-compra.service'
+import {Pedido} from '../shared/pedido.model'
+
 
 @Component({
   selector: 'app-ordem-compra',
@@ -9,6 +11,8 @@ import { OrdemCompraService } from '../ordem-compra.service'
 })
 export class OrdemCompraComponent implements OnInit {
 
+  public pedido: Pedido = new Pedido('', '', '', '');
+  public idPedidoCompra: number;
   public endereco: string = '';
   public numero: string = '';
   public complemento: string = '';
@@ -21,11 +25,12 @@ export class OrdemCompraComponent implements OnInit {
   public numeroEstadoPrimitivo: boolean = true;
   public complementoEstadoPrimitivo: boolean = true;
   public formaPagamentoEstadoPrimitivo: boolean = true;
+
   public formEstado: string = 'disabled'
   constructor(private ordemCompraService: OrdemCompraService) { }
 
   ngOnInit() {
-    this.ordemCompraService.efetivarCompra();
+
   }
 
   public atualizaEndereco(endereco: string): void {
@@ -58,6 +63,7 @@ export class OrdemCompraComponent implements OnInit {
     this.habilitaForm();
   }
 
+
   public habilitaForm(): void {
     if(this.enderecoValido === true && this.numeroValido === true && this.formaPagamentoValido === true)
     {
@@ -65,6 +71,19 @@ export class OrdemCompraComponent implements OnInit {
     }else{
       this.formEstado = 'disabled';
     }
+  }
+
+  public confirmarCompra() : void{
+    this.pedido.endereco = this.endereco;
+    this.pedido.numero = this.numero;
+    this.pedido.complemento = this.complemento;
+    this.pedido.formaPagamento = this.formaPagamento;
+
+    this.ordemCompraService.efetivarCompra(this.pedido)
+        .subscribe((resposta) => {
+          console.log(resposta)
+          this.idPedidoCompra = resposta.id;
+        });
   }
 
 }
