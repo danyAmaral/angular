@@ -1,6 +1,6 @@
 <div class="container">
   <div class="ordem-compra">
-    <form #formulario="ngForm" novalidate>
+    <form #formulario="ngForm" novalidate (ngSubmit)="confirmarCompra()">
     
       <h5>Sua Compra</h5>
       <hr />
@@ -61,7 +61,8 @@
         </div>
       </div>
       <br />
-
+      <pre>Valido {{formulario.valid | json}}</pre>
+      <pre>invalido {{formulario.invalid | json}}</pre>
     <pre>{{formulario.value | json}}</pre>
       <h5>Dados de entrega</h5>
       <hr />
@@ -71,10 +72,11 @@
         <div class="form-group col-md-6">
           <input 
             type="text" 
-            class="form-control is-invalid" 
+            class="form-control" 
             placeholder="Endereço" 
             autocomplete="off" 
-            minlength="5" 
+            minlength="3" 
+            maxlength="120"
             required
             name="endereco"
             ngModel
@@ -85,10 +87,11 @@
         <div class="form-group col-md-2">
           <input 
             type="text" 
-            class="form-control is-valid" 
+            class="form-control" 
             placeholder="Número" 
             autocomplete="off" 
-            minlength="1"
+            minlength="1" 
+            maxlength="20"
             required
             name="numero"
             ngModel
@@ -117,9 +120,10 @@
           
         <div class="form-group col-md-3">
           <select 
-            class="form-control is-invalid"
+            class="form-control"
             name="formaPagamento"
             ngModel
+            required
           >
             <option value="">Selecione uma opção</option>
             <option value="dinheiro">Dinheiro</option>
@@ -131,7 +135,7 @@
 
       <hr />
       <button 
-        type="button" 
+        type="submit" 
         class="btn btn-primary btn-lg"
       >Cofirmar compra</button>
     </form>
