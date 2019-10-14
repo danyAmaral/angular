@@ -199,6 +199,20 @@
       "complemento": "casa amarela",
       "formaPagamento": "dinheiro",
       "id": 2
+    },
+    {
+      "endereco": "Rua mara",
+      "numero": "12",
+      "complemento": "ap 5",
+      "formaPagamento": "dinheiro",
+      "id": 3
+    },
+    {
+      "endereco": "rua teste sucesso",
+      "numero": "1",
+      "complemento": "",
+      "formaPagamento": "debito",
+      "id": 4
     }
   ]
 }
