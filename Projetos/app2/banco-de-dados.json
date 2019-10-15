@@ -213,6 +213,20 @@
       "complemento": "",
       "formaPagamento": "debito",
       "id": 4
+    },
+    {
+      "endereco": "rua teste form ",
+      "numero": "11",
+      "complemento": "ap 5",
+      "formaPagamento": "debito",
+      "id": 5
+    },
+    {
+      "endereco": "rua teste 2",
+      "numero": "1",
+      "complemento": "1",
+      "formaPagamento": "debito",
+      "id": 6
     }
   ]
 }

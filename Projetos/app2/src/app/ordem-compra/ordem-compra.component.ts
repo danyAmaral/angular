@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdemCompraService } from '../ordem-compra.service'
 import { Pedido } from '../shared/pedido.model'
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { min } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ordem-compra',
@@ -11,11 +12,12 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class OrdemCompraComponent implements OnInit {
 
+  public idPedidoCompra: number;
   public formulario: FormGroup = new FormGroup({
-     'endereco': new FormControl(null), 
-     'numero': new FormControl(null), 
+     'endereco': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(120) ]), 
+     'numero': new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]), 
      'complemento': new FormControl(null), 
-     'formaPagamento': new FormControl(null)
+     'formaPagamento': new FormControl(null, Validators.required)
   });
   constructor(private ordemCompraService: OrdemCompraService) { }
 
@@ -24,5 +26,26 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   public confirmarCompra(): void {
+
+    if(this.formulario.status == "INVALID"){
+      this.formulario.get('endereco').markAllAsTouched();
+      this.formulario.get('numero').markAllAsTouched();
+      this.formulario.get('complemento').markAllAsTouched();
+      this.formulario.get('formaPagamento').markAllAsTouched();
+    }
+    else{
+       let pedido = new Pedido(
+                    this.formulario.value.endereco, 
+                    this.formulario.value.numero,
+                    this.formulario.value.complemento,
+                    this.formulario.value.formaPagamento
+                    );
+
+        this.ordemCompraService.efetivarCompra(pedido)
+                .subscribe((resposta) => {
+                    this.idPedidoCompra = resposta.id
+                    console.log( this.idPedidoCompra);
+                });
+    }
   }
 }
