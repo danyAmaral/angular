@@ -12,6 +12,7 @@ import {ROUTES} from './app.routes';
 import { OfertaComponent } from './oferta/oferta.component';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component'
+import {CarrinhoService } from './carrinho.service'
 //import {FormsModule} from '@angular/forms'
 import {ReactiveFormsModule} from '@angular/forms'
 import localePT from '@angular/common/locales/pt';
@@ -44,9 +45,8 @@ import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
-    {
-      provide: LOCALE_ID, useValue: 'pt-Br'
-    }
+    CarrinhoService,
+    { provide: LOCALE_ID, useValue: 'pt-Br'}
   ],
   bootstrap: [AppComponent]
 })
