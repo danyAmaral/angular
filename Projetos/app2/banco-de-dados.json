@@ -227,6 +227,54 @@
       "complemento": "1",
       "formaPagamento": "debito",
       "id": 6
+    },
+    {
+      "endereco": "teste dani 01",
+      "numero": "123",
+      "complemento": "321",
+      "formaPagamento": "dinheiro",
+      "itens": [
+        {
+          "id": 6,
+          "img": {
+            "url": "/assets/ofertas/6/img1.jpg"
+          },
+          "titulo": "Academia de tiro",
+          "descricao_oferta": "Sessão de tiro dinâmico com Instrutor, Estande, Alvo e Equipamentos.",
+          "valor": 89.9,
+          "quantidade": 1
+        },
+        {
+          "id": 4,
+          "img": {
+            "url": "/assets/ofertas/4/img1.jpg"
+          },
+          "titulo": "Estância das águas",
+          "descricao_oferta": "Diversão garantida com piscinas, trilhas e muito mais.",
+          "valor": 31.9,
+          "quantidade": 2
+        }
+      ],
+      "id": 7
+    },
+    {
+      "endereco": "aaaaaa",
+      "numero": "q",
+      "complemento": "qqq",
+      "formaPagamento": "dinheiro",
+      "itens": [
+        {
+          "id": 5,
+          "img": {
+            "url": "/assets/ofertas/5/img1.jpg"
+          },
+          "titulo": "Kart",
+          "descricao_oferta": "Bateria de Kart de 30 minutos.",
+          "valor": 54.9,
+          "quantidade": 2
+        }
+      ],
+      "id": 8
     }
   ]
 }
