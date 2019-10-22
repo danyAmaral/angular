@@ -40,7 +40,6 @@ export class BannerComponent implements OnInit {
         }
     }
     this.imagens[idx].estado = 'visivel';
-    console.log(idx)
     setTimeout(() => { this.logicaRotacao()}, 3000);
   }
 
