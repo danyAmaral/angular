@@ -1,11 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 d-flex justify-content-end">
-      <app-banner></app-banner>
+    <div class="col-sm-6 d-flex justify-content-end" [@animacao-banner]="estadoBanner">
+      <app-banner ></app-banner>
     </div>
-
-    <div class="col-sm-6 d-flex justify-content-start">
-		<app-cadastro></app-cadastro>
-    </div>  
+    <div *ngIf="cadastro; else formLogin">
+      <app-cadastro ></app-cadastro>
+    </div>
+    <ng-template #formLogin>
+      <div class="col-sm-6 d-flex justify-content-start" [@animacao-painel]="estadoPainel">
+        <app-login></app-login>
+        </div> 
+    </ng-template>
   </div>
 </div>
