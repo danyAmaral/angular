@@ -1,7 +1,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" *ngIf="progressoPubicacao === 'pendente'">
             <form [formGroup]="formulario" (ngSubmit)="publicar()">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Criar publicação</h5>
@@ -10,11 +10,37 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" class="form-control" placeholder="Título da publicação" formControlName="titulo"/>
+                    <input type="text" class="form-control" placeholder="Título da publicação"
+                        formControlName="titulo" />
+                    <input type="file" class="form-control" accept="image/*" (change)="preparaImagemUpload($event)" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     <button type="submit" class="btn btn-primary">Publicar</button>
+                </div>
+            </form>
+        </div>
+        <div class="modal-content" *ngIf="progressoPubicacao === 'andamento'">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Publicação em andamento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Progresso: {{porcentagemUpload}}
+            </div>
+        </div>
+        <div class="modal-content" *ngIf="progressoPubicacao === 'concluido'">
+            <form [formGroup]="formulario" (ngSubmit)="publicar()">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Publicação concluída</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Sua publicação foi realizada com sucesso!
                 </div>
             </form>
         </div>
