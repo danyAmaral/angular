@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Autenticacao } from '../autenticacao.service';
+import { PublicacoesComponent } from './publicacoes/publicacoes.component';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,7 @@ import { Autenticacao } from '../autenticacao.service';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild(PublicacoesComponent, {static: true}) public publicacoes: PublicacoesComponent;
   constructor(private autenticacao: Autenticacao) { }
 
   ngOnInit() {
@@ -15,4 +17,8 @@ export class HomeComponent implements OnInit {
   public sair(): void {
     this.autenticacao.sair();
   }
+  public atualizartimeline():void{
+    this.publicacoes.atualizarTimeLine();
+  }
+
 }
